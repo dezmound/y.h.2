@@ -5,6 +5,7 @@
     <title>Dungeon of Doom</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/gesture.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -28,23 +29,43 @@
             </div>
         </div>
         <div class="popup popup_hidden popup_level_1">
-            <div class="popup__content popup__content_level_1">
+            <div class="popup__content popup__content_level_1" touch-action="none">
                 <div class="popup__close">╳</div>
+                <div class="door-riddle">
+                    <div class="door-riddle__button door-riddle__button_0 draggable"></div>
+                    <div class="door-riddle__button door-riddle__button_1 draggable"></div>
+                </div>
+                <div class="drop-zones">
+                    <div class="drop-zone drop-zone_1"></div>
+                    <div class="drop-zone drop-zone_2"></div>
+                </div>
             </div>
         </div>
         <div class="popup popup_hidden popup_level_2">
-            <div class="popup__content popup__content_level_2">
+            <div class="popup__content popup__content_level_2" touch-action="none">
                 <div class="popup__close">╳</div>
+                <div class="drop-zones_gear">
+                    <div class="drop-zone_gear drop-zone_gear_1" style="width: 20vh; height: 20vh; background: #f9f79b"></div>
+                    <div class="drop-zone_gear drop-zone_gear_2" style="width: 15vh; height: 15vh; background: #e3e3e3"></div>
+                    <div class="drop-zone_gear drop-zone_gear_3" style="width: 30vh; height: 30vh; background: #e37f75"></div>
+                </div>
+                <div class="gear-c gear-c_yellow"><div class="gear gear_yellow" style="width: 22vh; height: 22vh;"></div></div>
+                <div class="gear-c gear-c_gray"><div class="gear gear_gray" style="width: 17vh; height: 17vh;"></div></div>
+                <div class="gear-c gear-c_purple"><div class="gear gear_purple" style="width: 32vh; height: 32vh;"></div></div>
             </div>
         </div>
         <div class="popup popup_hidden popup_level_3">
-            <div class="popup__content popup__content_level_3">
+            <div class="popup__content popup__content_level_3" touch-action="none">
                 <div class="popup__close">╳</div>
+                <div class="lock_1 rotatable"></div>
+                <div class="lock_2 rotatable"></div>
+                <div class="lock_3 rotatable"></div>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+    <script src="js/gestures.js"></script>
     <script src="js/doorBase.js"></script>
     <script src="js/doorOthers.js"></script>
     <script src="js/app.js"></script>

@@ -184,3 +184,93 @@ body {
 .door-riddle__button_pressed {
     background-color: #F3E5D9;
 }
+.drop-zones {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.drop-zone {
+    height: 70px;
+    width: 70px;
+    background-color: #583319;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .4);
+}
+.drop-zones_gear {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.drop-zone_gear {
+    border-radius: 50%;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .4);
+    opacity: 0.98;
+}
+.drop-zone_gear_1 {
+    left: 20%;
+    top: 20%;
+}
+.drop-zone_gear_2 {
+    left: 40%;
+    top: 40%;
+}
+.drop-zone_gear_3 {
+    left: 75%;
+    top: 75%;
+}
+.gear-c {
+    position: absolute;
+    right: 0;
+    top: 20%;
+}
+.gear_gray {
+    background: url("../img/gray.svg") center/cover;
+}
+.gear_purple {
+    background: url("../img/purple.svg") center/cover;
+}
+.gear_yellow {
+    background: url("../img/yellow.svg") center/cover;
+}
+.spin {
+    animation: spin normal .8s infinite;
+}
+.lock_1 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: calc(50% - 200px);
+    left: calc(50% - 200px);
+    background: #583319;
+    border-radius: 50%;
+    border-left: 4px dashed white;
+}
+.lock_2 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: calc(50% - 150px);
+    left: calc(50% - 150px);
+    background: #be891a;
+    border-radius: 50%;
+    border-right: 4px solid white;
+}
+.lock_3 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: calc(50% - 100px);
+    left: calc(50% - 100px);
+    background: #dfc429;
+    border-radius: 50%;
+    border-bottom: 4px solid white;
+}
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
