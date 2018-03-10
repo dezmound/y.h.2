@@ -1,8 +1,8 @@
 .draggable {
-    transition: .05s transform;
+    transition: .05s transform, all;
     transform: translate(0, 0);
 }
 .rotatable {
-    transition: .05s transform;
+    transition: .05s transform, all;
     transform: rotate(0);
 }

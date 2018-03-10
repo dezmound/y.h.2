@@ -29,7 +29,7 @@ class Gesture {
         this.targets.forEach(e => {
             e.releaseGesture = function (event) {
                 let __self = this;
-                if(_self.event == event) {
+                if(_self.event === event) {
                     Object.keys(_self.handlers).forEach(e => {
                         _self.targets[_self.targets.indexOf(__self)].removeEventListener(e, _self.handlers[e]);
                     });
@@ -69,9 +69,9 @@ class DragOnGesture extends Gesture {
         this.dropable = this.targets[1];
         let initialRect = this.draggable.getBoundingClientRect();
         this.draggable.dragGesture = { isRelease: true, x: initialRect.left, y: initialRect.top, cx: initialRect.width / 2, cy: initialRect.height / 2 };
-        let pointerDownHandler = this._pointerdownHandler.bind(this);
-        let pointerUpHandler = this._pointerupHandler.bind(this);
-        let pointerMoveHandler = this._pointermoveHandler.bind(this);
+        let pointerDownHandler = this._pointerDownHandler.bind(this);
+        let pointerUpHandler = this._pointerUpHandler.bind(this);
+        let pointerMoveHandler = this._pointerMoveHandler.bind(this);
         this.draggable.addEventListener('pointerdown', pointerDownHandler);
         this.draggable.addEventListener('pointerup', pointerUpHandler);
         this.draggable.addEventListener('pointermove', pointerMoveHandler);
@@ -81,12 +81,12 @@ class DragOnGesture extends Gesture {
             'pointermove': pointerMoveHandler
         };
     }
-    _pointerdownHandler(e){
+    _pointerDownHandler(e){
         console.log('pointerDown');
         this.draggable.dragGesture.isRelease = false;
-        this.draggable.setPointerCapture(e.pointerId);
+        // this.draggable.setPointerCapture(e.pointerId);
     }
-    _pointermoveHandler(e){
+    _pointerMoveHandler(e){
         if(!this.draggable.dragGesture.isRelease) {
             let x = e.clientX;
             let y = e.clientY;
@@ -101,7 +101,7 @@ class DragOnGesture extends Gesture {
             this.draggable.style.transform = `translate( ${diffX}px, ${diffY}px )`;
         }
     }
-    _pointerupHandler(e){
+    _pointerUpHandler(e){
         console.log('pointerUp');
         this.draggable.dragGesture.isRelease = true;
         this.draggable.releasePointerCapture(e.pointerId);
@@ -131,9 +131,9 @@ class RotateGesture extends Gesture {
         super._afterBind();
         this.rotatable = this.targets[0];
         this.rotatable.rotateGesture = { isRotate: false };
-        let pointerDownHandler = this._pointerdownHandler.bind(this);
-        let pointerUpHandler = this._pointerupHandler.bind(this);
-        let pointerMoveHandler = this._pointermoveHandler.bind(this);
+        let pointerDownHandler = this._pointerDownHandler.bind(this);
+        let pointerUpHandler = this._pointerUpHandler.bind(this);
+        let pointerMoveHandler = this._pointerMoveHandler.bind(this);
         this.rotatable.addEventListener('pointerdown', pointerDownHandler);
         this.rotatable.addEventListener('pointerup', pointerUpHandler);
         this.rotatable.addEventListener('pointermove', pointerMoveHandler);
@@ -143,7 +143,7 @@ class RotateGesture extends Gesture {
             'pointermove': pointerMoveHandler
         };
     }
-    _pointerdownHandler(e){
+    _pointerDownHandler(e){
         console.log('pointerDown');
         this.pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
         if(Object.keys(this.pointers).length === 2) {
@@ -159,7 +159,8 @@ class RotateGesture extends Gesture {
                 (this.pointers[keys[1]].x - this.pointers[keys[0]].x);
         }
     }
-    _pointermoveHandler(e){
+    _pointerMoveHandler(e){
+        const RAD_TO_DEG = 57.2958;
         let keys = Object.keys(this.pointers);
         if(keys.length === 2) {
             let destonation = Math.sqrt(
@@ -170,14 +171,12 @@ class RotateGesture extends Gesture {
                 let alpha = (this.pointers[keys[1]].y - this.pointers[keys[0]].y) /
                     (this.pointers[keys[1]].x - this.pointers[keys[0]].x);
                 let calculations = (alpha - this.oldAlpha) / (1 + alpha * this.oldAlpha);
-                console.log(calculations, Math.abs(Math.acos(calculations) - this.angle) * 57.2958);
-                if(Math.abs(Math.atan(calculations) * 57.2958 - this.angle) > 5) {
-                    this.angle += Math.atan(calculations) * 57.2958;
+                if(Math.abs(Math.atan(calculations) * RAD_TO_DEG - this.angle) > 5) {
+                    this.angle += Math.atan(calculations) * RAD_TO_DEG;
                     this.rotatable.rotateGesture.isRotate = true;
                     this.destonation = destonation;
                     this.oldAlpha = alpha;
                     this._trigger();
-                    console.log(this.angle, calculations);
                 }
                 this.pointers = {};
             }
@@ -185,7 +184,7 @@ class RotateGesture extends Gesture {
             this.pointers[e.pointerId] = {x: e.clientX, y: e.clientY};
         }
     }
-    _pointerupHandler(e){
+    _pointerUpHandler(e){
         let keys = Object.keys(this.pointers);
         this.oldAlpha = 0;
         keys.forEach(e => {

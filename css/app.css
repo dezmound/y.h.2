@@ -267,6 +267,44 @@ body {
     border-radius: 50%;
     border-bottom: 4px solid white;
 }
+.hint {
+    transition: bottom .2s;
+    background: white;
+    margin-top: 0;
+    color: #ababab;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .4);
+    position: absolute;
+    padding: 10px 5px;
+    bottom: 0;
+}
+.hint_1 {
+    animation: hint .8s 7s ease forwards;
+}
+.hint_2 {
+    animation: hint .8s 8s ease forwards;
+}
+.hint_3 {
+    animation: hint .8s 8s ease forwards;
+}
+.blink {
+    animation: a-blink .6s 1s ease forwards;
+}
+@keyframes hint {
+    from {
+        bottom: 0;
+    }
+    to {
+        bottom: -200px;
+    }
+}
+@keyframes a-blink {
+    from {
+        background: #ff8b0f;
+    }
+    to {
+        background: #40e02e;
+    }
+}
 @keyframes spin {
     from {
         transform: rotate(0);

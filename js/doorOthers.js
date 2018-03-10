@@ -62,6 +62,11 @@ Door0.prototype.constructor = DoorBase;
 function Door1(number, onUnlock) {
     DoorBase.apply(this, arguments);
 
+
+    this.popup.addEventListener('onpopupopen', e => {
+        this.popup.querySelector('.hint').classList.add('hint_1');
+    });
+
     // ==== Напишите свой код для открытия второй двери здесь ====
     // Для примера дверь откроется просто по клику на неё
     let cart = 0x0;
@@ -113,6 +118,11 @@ Door1.prototype.constructor = DoorBase;
  */
 function Door2(number, onUnlock) {
     DoorBase.apply(this, arguments);
+
+
+    this.popup.addEventListener('onpopupopen', e => {
+        this.popup.querySelector('.hint').classList.add('hint_2');
+    });
     // ==== Напишите свой код для открытия третей двери здесь ====
     // Для примера дверь откроется просто по клику на неё
     let lock = 0x0;
@@ -144,7 +154,7 @@ function Door2(number, onUnlock) {
         gear_purple.releaseGesture('ondragon');
         gear_purple.querySelector('.gear').classList.add('spin');
         if(lock === 0x7 && this.isLocked) {
-            setTimeout(e => this.unlock, 0);
+            setTimeout(e => this.unlock(), 0);
         }
     });
     drop_yellow.addEventListener('ondragon', e => {
@@ -152,7 +162,7 @@ function Door2(number, onUnlock) {
         gear_yellow.releaseGesture('ondragon');
         gear_yellow.querySelector('.gear').classList.add('spin');
         if(lock === 0x7 && this.isLocked) {
-            setTimeout(e => this.unlock, 0);
+            setTimeout(e => this.unlock(), 0);
         }
     });
     drop_gray.addEventListener('ondragon', e => {
@@ -160,7 +170,7 @@ function Door2(number, onUnlock) {
         gear_gray.releaseGesture('ondragon');
         gear_gray.querySelector('.gear').classList.add('spin');
         if(lock === 0x7 && this.isLocked) {
-            setTimeout(e => this.unlock, 0);
+            setTimeout(e => this.unlock(), 0);
         }
     });
 
@@ -179,6 +189,11 @@ Door2.prototype.constructor = DoorBase;
 function Box(number, onUnlock) {
     DoorBase.apply(this, arguments);
 
+
+    this.popup.addEventListener('onpopupopen', e => {
+        this.popup.querySelector('.hint').classList.add('hint_3');
+    });
+
     // ==== Напишите свой код для открытия сундука здесь ====
     // Для примера сундук откроется просто по клику на него
     let rotateGesture = new RotateGesture();
@@ -193,6 +208,7 @@ function Box(number, onUnlock) {
         lock_1.style.transform = `rotate(${ rotateGesture.angle }deg)`;
         if(Math.abs(90 - Math.abs(rotateGesture.angle)) < 20) {
             lock_1.releaseGesture('onrotate');
+            lock_1.classList.add('blink');
             lock |= 0x1;
             if(lock === 0x7 && this.isLocked) {
                 this.unlock();
@@ -204,6 +220,7 @@ function Box(number, onUnlock) {
         lock_2.style.transform = `rotate(${ rotateGesture1.angle }deg)`;
         if(Math.abs(90 - Math.abs(rotateGesture1.angle)) < 20) {
             lock_2.releaseGesture('onrotate');
+            lock_2.classList.add('blink');
             lock |= 0x2;
             if(lock === 0x7 && this.isLocked) {
                 this.unlock();
@@ -215,6 +232,7 @@ function Box(number, onUnlock) {
         lock_3.style.transform = `rotate(${ rotateGesture2.angle }deg)`;
         if(Math.abs(180 - Math.abs(rotateGesture2.angle)) < 20) {
             lock_3.releaseGesture('onrotate');
+            lock_3.classList.add('blink');
             lock |= 0x4;
             if(lock === 0x7 && this.isLocked) {
                 this.unlock();

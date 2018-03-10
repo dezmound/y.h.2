@@ -32,6 +32,7 @@ function DoorBase(number, onUnlock) {
 
 DoorBase.prototype = {
     openPopup: function() {
+        this.popup.dispatchEvent(new Event('onpopupopen'));
         this.popup.classList.remove('popup_hidden');
     },
     closePopup: function() {
