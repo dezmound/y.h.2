@@ -22,7 +22,6 @@ class Gesture {
         }
     }
     handleZoneEvent(e) {
-        // console.log(e.type, e.target);
     }
     bind(targets, triggerOn, zone) {
         let _self = this;
