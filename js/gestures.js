@@ -84,7 +84,7 @@ class DragOnGesture extends Gesture {
     _pointerDownHandler(e){
         console.log('pointerDown');
         this.draggable.dragGesture.isRelease = false;
-        // this.draggable.setPointerCapture(e.pointerId);
+        this.draggable.setPointerCapture(e.pointerId);
     }
     _pointerMoveHandler(e){
         if(!this.draggable.dragGesture.isRelease) {
