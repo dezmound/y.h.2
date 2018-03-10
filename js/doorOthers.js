@@ -144,7 +144,7 @@ function Door2(number, onUnlock) {
         gear_purple.releaseGesture('ondragon');
         gear_purple.querySelector('.gear').classList.add('spin');
         if(lock === 0x7 && this.isLocked) {
-            setTimeout(this.unlock, 0);
+            setTimeout(e => this.unlock, 0);
         }
     });
     drop_yellow.addEventListener('ondragon', e => {
@@ -152,7 +152,7 @@ function Door2(number, onUnlock) {
         gear_yellow.releaseGesture('ondragon');
         gear_yellow.querySelector('.gear').classList.add('spin');
         if(lock === 0x7 && this.isLocked) {
-            setTimeout(this.unlock, 0);
+            setTimeout(e => this.unlock, 0);
         }
     });
     drop_gray.addEventListener('ondragon', e => {
@@ -160,7 +160,7 @@ function Door2(number, onUnlock) {
         gear_gray.releaseGesture('ondragon');
         gear_gray.querySelector('.gear').classList.add('spin');
         if(lock === 0x7 && this.isLocked) {
-            setTimeout(this.unlock, 0);
+            setTimeout(e => this.unlock, 0);
         }
     });
 
